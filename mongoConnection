@@ -1,0 +1,26 @@
+https://github.com/shresos/MongoDB.gitimport com.mongodb.BasicDBObject;
+import com.mongodb.*;
+import java.util.*;
+try
+{
+    /* Connection to mongo DB */
+     MongoClient mongo = new MongoClient("ipaddress", port);
+     DB coreDB = mongo.getDB("dbName");
+     boolean auth = coreDB.authenticate("userName", "password".toCharArray());
+     log.info("***" + auth);
+
+
+     /* example to print all the documents of particular collection */
+     DBCollection coll = coreDB.getCollection("CollectionName");
+     DBCursor cursor = coll.find();
+     while(cursor.hasNext())
+     {
+        log.info(cursor.next().toString());
+     }
+}
+
+/* Exception */
+catch (Exception e)
+{
+                        log.info("HI" + e.getMessage());
+}
